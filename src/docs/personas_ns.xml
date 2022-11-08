@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<personas xmlns="http://www.personas.com" xmlns:a="http://www.personas.com/active">
+<personas xmlns="http://www.personas.com"
+          xmlns:a="http://www.personas.com/active">
     <a:persona id="1">
         <nombre>Lucas</nombre>
         <dni>12345678A</dni>

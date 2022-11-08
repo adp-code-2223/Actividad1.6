@@ -30,13 +30,12 @@ public class MainC {
 
     private static final String PERSONA_TAG = "persona";
 
-    private static final String PERSONAS_INPUT_FILE = Paths.get("src", "docs", "personas_ns.xml").toString();
-    private static final String PERSONAS_OUTPUT_FILE = Paths.get("src", "docs", "personas_output.xml").toString();
+    private static final String PERSONAS_INPUT_FILE
+            = Paths.get("src", "docs", "personas_ns.xml").toString();
+    private static final String PERSONAS_OUTPUT_FILE = Paths.get("src",
+            "docs", "personas_output.xml").toString();
 
     public static void main(String[] args) {
-
-        ArrayList<Persona> personasNoActivas = new ArrayList<>();
-        ArrayList<Persona> personasActivas = new ArrayList<>();
 
         try {
             File inputFile = new File(PERSONAS_INPUT_FILE);
@@ -50,14 +49,16 @@ public class MainC {
             doc.getDocumentElement().normalize();
             Element root = doc.getDocumentElement();
 
-         
-            NodeList nListNSPorDefecto = doc.getElementsByTagName(PERSONA_TAG);
+            NodeList nListNSPorDefecto
+                    = doc.getElementsByTagName(PERSONA_TAG);
 
-         
-            for (int i = (nListNSPorDefecto.getLength() - 1); i >= 0; i--) {
+            //Los cambios en el DOM se reflejan en la NodeList de forma
+            //automática
+            //https://stackoverflow.com/questions/1374088/removing-dom-nodes-when-traversing-a-nodelist
+            for (int i = nListNSPorDefecto.getLength() - 1; i >= 0; i--) {
 //                System.out.println("Hijos length: " + root.getChildNodes().getLength());
                 Node hijo = nListNSPorDefecto.item(i);
-                Node deleted =root.removeChild(hijo);
+                Node deleted = root.removeChild(hijo);
                 //  Node deleted = personas.removeChild(hijo);
                 if (deleted != null) {
                     System.out.println("Se ha eliminado un hijo");
